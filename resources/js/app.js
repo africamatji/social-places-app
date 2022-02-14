@@ -28,8 +28,10 @@ Vue.component('App', require('./components/App.vue').default);
  */
 
 import Vuetify from 'vuetify';
-Vue.use(Vuetify);
 import router from './router';
+import api from './plugins/api.js';
+Vue.use(Vuetify);
+Vue.use(api);
 
 
 const app = new Vue({

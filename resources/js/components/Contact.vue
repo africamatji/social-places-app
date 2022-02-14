@@ -28,16 +28,16 @@
                         :rules="emailRules"
                         required
                     ></v-text-field>
-                    <v-radio-group v-model="form.gender">
-                        <v-radio
-                            label="Female"
-                            color="orange darken-3"
-                            value="F"
-                        ></v-radio>
+                    <v-radio-group :rules="required" v-model="form.gender">
                         <v-radio
                             label="Male"
                             color="orange darken-3"
                             value="M"
+                        ></v-radio>
+                        <v-radio
+                            label="Female"
+                            color="orange darken-3"
+                            value="F"
                         ></v-radio>
                     </v-radio-group>
                     <v-textarea
@@ -47,17 +47,6 @@
                         rows="2"
                         :rules="contentRules"
                     ></v-textarea>
-                </v-col>
-            </v-row>
-            <v-row v-if="errors">
-                <v-col v-for="error in errors" v-bind:key="error">
-                    <v-alert
-                        dense
-                        outlined
-                        type="error"
-                    >
-                        {{ error }}
-                    </v-alert>
                 </v-col>
             </v-row>
             <v-row>
@@ -85,7 +74,7 @@
         name: "Contact",
         data: () => (
             { 
-                valid: true,
+                valid: false,
                 btnLoading: false,
                 errors: [],
                 genderItems: ['Foo', 'Bar', 'Fizz', 'Buzz'],
@@ -105,6 +94,9 @@
                 contentRules: [
                     (v) => (v && v.length >= 5) || 'Your comment is too short'
                 ],
+                required: [
+                    (v) => (v && v.length > 0) || "Required"
+                ],
             }
         ),
         computed: {
@@ -113,8 +105,24 @@
             console.log('Login page mounted.')
         },
         methods: {
-            submitData () {
-                this.btnLoading = true;
+            async submitData () {
+                if (this.$refs.form.validate()) {
+                    this.btnLoading = true;
+                    /*console.log('this.form.name', this.form.name);
+                    console.log('email', this.form.email);
+                    console.log('gender', this.form.gender);
+                    console.log('content', this.form.content);*/
+                    
+                    const formData = new FormData();
+                    formData.append('name', this.form.name);
+                    formData.append('email', this.form.email);
+                    formData.append('gender', this.form.gender);
+                    formData.append('content', this.form.content);
+
+                    const resp = await this.$api.createContact(formData);
+                    console.log('resp', resp);  
+                }
+                this.btnLoading = false;
             },
         },
     }
