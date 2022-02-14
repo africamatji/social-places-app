@@ -14,7 +14,7 @@
                  >
                     <v-row justify="center">
                         <v-col cols="8" class="mt-8">
-                            <v-col cols="12" v-if="success">
+                            <v-col cols="12" v-if="showResponse">
                                 <v-alert
                                     color="green"
                                     dismissible
@@ -89,8 +89,7 @@
                 valid: false,
                 btnLoading: false,
                 errors: [],
-                genderItems: ['Foo', 'Bar', 'Fizz', 'Buzz'],
-                success: false,
+                showResponse: false,
                 responseMessage: null,
                 form: {
                     email: null,
@@ -125,12 +124,13 @@
                     formData.append('content', this.form.content);
 
                     const resp = await this.$api.createContact(formData);
+
                     if (resp.status === 200) {
-                        this.success = true;
                         this.responseMessage = 'Your email has been sent, Thank you';
                     } else {
                         this.responseMessage = 'Error send your message, please try again';
                     }
+                     this.showResponse = true;
                 }
                 this.btnLoading = false;
             },

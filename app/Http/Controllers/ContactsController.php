@@ -7,15 +7,15 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Exception;
 
-class ContactsController extends Controller 
-{
+class ContactsController extends Controller {
+    
     /**
      * @param Request
      * @param ContactsRepo
      * @return JsonResponse
      */
-    public function saveContact (Request $request, ContactsRepo $contacts): JsonResponse {
-
+    public function saveContact (Request $request, ContactsRepo $contacts): JsonResponse 
+    {
         $validator = $request->validate([
             'name' => 'required|max:255',
             'email' => 'required|email',
@@ -26,8 +26,8 @@ class ContactsController extends Controller
         try { 
             $response = $contacts->create($request->all());
             return response()->json($response);
-        } catch(Exception $ex) {
-            return response()->json(['success' => false, 'message' => $ex->getMessage()]);
+        } catch(Exception $e) {
+            return response()->json(['success' => false, 'message' => $e->getMessage()], $e->getCode());
         }   
     }
 }

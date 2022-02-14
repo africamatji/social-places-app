@@ -23,7 +23,7 @@
                 <v-icon x-large color="#fff">mdi-lock</v-icon>
             </v-btn>
             <v-btn class="v-btn" @click="$router.push('/about')">
-                <span >Welcome</span>
+                <span >About</span>
                 <v-icon x-large color="#fff">mdi-ghost</v-icon>
             </v-btn>  
   </v-bottom-navigation>
