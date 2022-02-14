@@ -4,6 +4,7 @@ Vue.use(Router);
 import Login from './components/auth/Login';
 import Welcome from './components/Welcome';
 import Contact from './components/Contact';
+import Dashboard from './components/admin/Dashboard';
 
 const routes = [
     {
@@ -21,6 +22,11 @@ const routes = [
         component: Contact,
         name: 'contact',
     },
+    {
+        path: '/admin/dashboard',
+        component: Dashboard,
+        name: 'admin-dashboard',
+    }
 ];
 
 const router = new Router({

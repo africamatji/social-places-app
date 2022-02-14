@@ -14,6 +14,15 @@
                  >
             <v-row justify="center">
                 <v-col cols="8" class="mt-8">
+                    <v-col cols="12" v-if="showResponse">
+                        <v-alert
+                            color="green"
+                            dismissible
+                            type="success"
+                        >
+                            {{ responseMessage }}
+                        </v-alert>
+                    </v-col>
                     <v-text-field
                         placeholder="Email"
                         type="email"
@@ -44,9 +53,6 @@
                 </v-col>
             </v-row>
             <v-row>
-                <!--<v-col sm="6">
-                    <v-btn text plain to="/register">Create an Account</v-btn>
-                </v-col>-->
                 <v-col sm="6" align="right">
                     <v-btn
                         :disabled="!valid"
@@ -75,6 +81,7 @@
             { 
                 valid: true,
                 btnLoading: false,
+                showResponse: false,
                 errors: [],
                 form: {
                     email: null,
@@ -90,8 +97,24 @@
             }
         ),
         methods: {
-            submitData () {
+            async submitData () {
+                if (this.$refs.form.validate()) {
+                    this.btnLoading = true;
+                    
+                    const formData = new FormData();
+                    formData.append('email', this.form.email);
+                    formData.append('password', this.form.password);
 
+                    const resp = await this.$api.adminLogin(formData);
+
+                    if (resp.status === 200) {
+                        this.$router.push('/admin/dashboard')
+                    } else {
+                        this.showResponse = true;
+                        this.responseMessage = 'Error loggin in';
+                    }
+                }
+                this.btnLoading = false;
             },
         },
     }
