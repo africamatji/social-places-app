@@ -1,6 +1,6 @@
 <template>
-  <v-row>
-      <v-col cols="12">
+  <v-row justify="center">
+      <v-col cols="8">
           Welcome page
       </v-col>
   </v-row>
@@ -13,11 +13,6 @@
             { 
                 value: 1 
             }
-        ),
-        computed: {
-        },        
-        mounted() {
-            console.log('Welcome page mounted.')
-        }
+        ), 
     }
 </script>

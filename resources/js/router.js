@@ -1,14 +1,13 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 Vue.use(Router);
-//import store from './store/';
 import Login from './components/auth/Login';
 import Welcome from './components/Welcome';
 import Contact from './components/Contact';
 
 const routes = [
     {
-        path: '/',
+        path: '/about',
         component: Welcome,
         name: 'welcome',
     },    
@@ -18,7 +17,7 @@ const routes = [
         name: 'login',
     },
     {
-        path: '/contact',
+        path: '/',
         component: Contact,
         name: 'contact',
     },

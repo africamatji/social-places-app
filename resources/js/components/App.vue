@@ -13,12 +13,8 @@
             dark
             shift
             color="#fff"
-         >
+         >  
             <v-btn class="v-btn" @click="$router.push('/')">
-                <span >Welcome</span>
-                <v-icon x-large color="#fff">mdi-ghost</v-icon>
-            </v-btn>    
-            <v-btn class="v-btn" @click="$router.push('/contact')">
                 <span>Email Us</span>
                 <v-icon x-large color="#fff">mdi-email</v-icon>
             </v-btn>
@@ -26,7 +22,10 @@
                 <span>Admin Login</span>
                 <v-icon x-large color="#fff">mdi-lock</v-icon>
             </v-btn>
-
+            <v-btn class="v-btn" @click="$router.push('/about')">
+                <span >Welcome</span>
+                <v-icon x-large color="#fff">mdi-ghost</v-icon>
+            </v-btn>  
   </v-bottom-navigation>
   
       </v-col>
@@ -36,21 +35,7 @@
 <script>
     export default {
         name: "App",
-        data: () => ({ value: 0 }),
-        computed: {
-        color () {
-            switch (this.value) {
-            case 0: return 'blue-grey'
-            case 1: return 'teal'
-            case 2: return 'brown'
-            case 3: return 'indigo'
-            default: return 'blue-grey'
-            }
-        },
-        },        
-        mounted() {
-            console.log('Component mounted.')
-        }
+        data: () => ({ value: 0 })
     }
 </script>
 <style scoped>

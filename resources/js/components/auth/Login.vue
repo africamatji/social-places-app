@@ -18,6 +18,7 @@
                         placeholder="Email"
                         type="email"
                         v-model="form.email"
+                        solo-inverted
                         :rules="emailRules"
                         required
                     ></v-text-field>
@@ -25,6 +26,7 @@
                         placeholder="Password"
                         type="password"
                         v-model="form.password"
+                        solo-inverted
                         :rules="passwordRules"
                         required
                     ></v-text-field>
@@ -87,11 +89,6 @@
                 ],
             }
         ),
-        computed: {
-        },        
-        mounted() {
-            console.log('Login page mounted.')
-        },
         methods: {
             submitData () {
 
