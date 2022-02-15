@@ -8,7 +8,7 @@ use Illuminate\Http\JsonResponse;
 use Exception;
 
 class ContactsController extends Controller {
-    
+
     /**
      * @param Request
      * @param ContactsRepo
@@ -29,6 +29,20 @@ class ContactsController extends Controller {
         } catch(Exception $e) {
             return response()->json(['success' => false, 'message' => $e->getMessage()], $e->getCode());
         }   
+    }
+
+    /**
+     * @param ContactsRepo
+     * @return JsonResponse
+    */
+    public function getContacts (ContactsRepo $contacts) : JsonResponse
+    {
+        try { 
+            $response = $contacts->list();
+            return response()->json($response);
+        } catch(Exception $e) {
+            return response()->json(['success' => false, 'message' => $e->getMessage()], $e->getCode());
+        }  
     }
 }
 

@@ -14,4 +14,14 @@ class ContactsRepo {
 
         return $contacts;
     }
+
+    /**
+     * @return Object
+     */
+    public function list (): Object
+    {
+        $contacts = Contacts::get();
+
+        return $contacts;
+    }
 }

@@ -19,6 +19,13 @@ api.install = function (Vue, options) {
       .catch((error)=> {
         return error;
       }),
+      getContacts: () => axios.post(base_url + '/api/contacts/list')
+      .then((resp) => {
+          return resp;
+      })
+      .catch((error)=> {
+        return error;
+      }),
   }
 };
 

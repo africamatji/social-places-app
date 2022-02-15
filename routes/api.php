@@ -21,3 +21,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/contacts', [ ContactsController::class, 'saveContact' ]);
 Route::post('/login', [ AuthController::class, 'authenticate' ]);
+Route::post('/contacts/list', [ ContactsController::class, 'getContacts' ]);

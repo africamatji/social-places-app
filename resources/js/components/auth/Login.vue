@@ -41,17 +41,6 @@
                     ></v-text-field>
                 </v-col>
             </v-row>
-            <v-row v-if="errors">
-                <v-col v-for="error in errors" v-bind:key="error">
-                    <v-alert
-                        dense
-                        outlined
-                        type="error"
-                    >
-                        {{ error }}
-                    </v-alert>
-                </v-col>
-            </v-row>
             <v-row>
                 <v-col sm="6" align="right">
                     <v-btn
@@ -100,19 +89,19 @@
             async submitData () {
                 if (this.$refs.form.validate()) {
                     this.btnLoading = true;
-                    
                     const formData = new FormData();
                     formData.append('email', this.form.email);
                     formData.append('password', this.form.password);
-
-                    const resp = await this.$api.adminLogin(formData);
-
-                    if (resp.status === 200) {
-                        this.$router.push('/admin/dashboard')
-                    } else {
-                        this.showResponse = true;
-                        this.responseMessage = 'Error loggin in';
-                    }
+                    await this.$store.dispatch("loginAdmin", this).then((resp) => {
+                        if (resp.status === 200) {
+                            this.$router.push('/admin/dashboard')
+                        } else {
+                            this.showResponse = true;
+                            this.responseMessage = 'Error loggin in';
+                        }
+                    }).catch((err) => {
+                        this.btnLoading = false;
+                    });
                 }
                 this.btnLoading = false;
             },

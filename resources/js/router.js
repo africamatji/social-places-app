@@ -5,6 +5,7 @@ import Login from './components/auth/Login';
 import Welcome from './components/Welcome';
 import Contact from './components/Contact';
 import Dashboard from './components/admin/Dashboard';
+import store from './store/';
 
 const routes = [
     {
@@ -26,6 +27,7 @@ const routes = [
         path: '/admin/dashboard',
         component: Dashboard,
         name: 'admin-dashboard',
+        meta: { requiresAuth: true },
     }
 ];
 
@@ -38,7 +40,7 @@ const router = new Router({
 });
 
 router.beforeEach((to, from, next) => {
-    if(to.meta.requiresAuth) {
+    if(to.meta.requiresAuth && !store.getters.isLoggedIn) {
         next({
             name: "login"
         });
