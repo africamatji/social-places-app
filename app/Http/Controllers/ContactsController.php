@@ -62,7 +62,7 @@ class ContactsController extends Controller {
             'body' => $content
         ];
 
-        Mail::to('newuser@example.com')->send(new MailDispatcher($details));
+        Mail::to(env('MAIL_TO_ADDRESS'))->send(new MailDispatcher($details));
 
         return true;
     }
