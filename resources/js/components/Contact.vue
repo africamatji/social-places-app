@@ -39,7 +39,7 @@
                                 solo-inverted
                                 required
                             ></v-text-field>
-                            <v-radio-group :rules="required" v-model="form.gender">
+                            <v-radio-group row :rules="required" v-model="form.gender">
                                 <v-radio
                                     label="Male"
                                     color="orange darken-3"
