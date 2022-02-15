@@ -19,13 +19,7 @@
       <v-col cols="12">
           <v-row justify="center">
               <v-col cols="8">
-                    <v-data-table
-                    :headers="headers"
-                    :items="dataItems"
-                    :items-per-page="5"
-                    :search="search"
-                    class="elevation-1"
-                    ></v-data-table>
+                  <h2>Admin Dashboard</h2>
               </v-col>
               <v-col cols="8">
                   <v-row>
@@ -37,21 +31,36 @@
                         ></v-text-field>   
                       </v-col>
                       <v-col cols="6">
-                           <v-radio-group v-model="gender">
-                        <span>Filter by Gender</span>
-                        <v-radio
-                            label="Male"
-                            color="orange darken-3"
-                            value="M"
-                        ></v-radio>
-                        <v-radio
-                            label="Female"
-                            color="orange darken-3"
-                            value="F"
-                        ></v-radio>
-                    </v-radio-group>
+                          <span>Filter by Gender</span>
+                        <v-radio-group row v-model="gender">
+                            
+                            <v-radio
+                                label="Male"
+                                color="orange darken-3"
+                                value="M"
+                            ></v-radio>
+                            <v-radio
+                                label="Female"
+                                color="orange darken-3"
+                                value="F"
+                            ></v-radio>
+                            <v-radio
+                                label="All"
+                                color="orange darken-3"
+                                value=""
+                            ></v-radio>
+                         </v-radio-group>
                       </v-col>
                   </v-row>
+              </v-col>
+              <v-col cols="8">
+                    <v-data-table
+                    :headers="headers"
+                    :items="dataItems"
+                    :items-per-page="5"
+                    :search="search"
+                    class="elevation-1"
+                    ></v-data-table>
               </v-col>
           </v-row>
       </v-col>
