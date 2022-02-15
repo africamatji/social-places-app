@@ -26,11 +26,32 @@
                     :search="search"
                     class="elevation-1"
                     ></v-data-table>
-                    <v-text-field
-                    v-model="search"
-                    label="Search"
-                    class="mx-4"
-                    ></v-text-field>    
+              </v-col>
+              <v-col cols="8">
+                  <v-row>
+                      <v-col cols="6">
+                        <v-text-field
+                            v-model="search"
+                            label="Search"
+                            class="mx-4"
+                        ></v-text-field>   
+                      </v-col>
+                      <v-col cols="6">
+                           <v-radio-group v-model="gender">
+                        <span>Filter by Gender</span>
+                        <v-radio
+                            label="Male"
+                            color="orange darken-3"
+                            value="M"
+                        ></v-radio>
+                        <v-radio
+                            label="Female"
+                            color="orange darken-3"
+                            value="F"
+                        ></v-radio>
+                    </v-radio-group>
+                      </v-col>
+                  </v-row>
               </v-col>
           </v-row>
       </v-col>
@@ -43,6 +64,7 @@
         data () {
             return {
                 search: '',
+                gender: '',
                 headers: [
                     { text: 'id', value: 'id' },
                     {
@@ -51,7 +73,14 @@
                         value: 'name',
                     },
                     { text: 'email', value: 'email' },
-                    { text: 'Gender', value: 'gender' },
+                    { 
+                        text: 'Gender', value: 'gender', 
+                        filter: value => {
+                            if (!this.gender) return true
+
+                            return value == this.gender;
+                        }
+                    },
                     { text: 'Content', value: 'content' },
                 ],
                 dataItems: []
